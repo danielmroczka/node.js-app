@@ -1,0 +1,15 @@
+{
+    "name": "application-name",
+    "description": "sample implementation of node.js",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "express": "3.5.1",
+        "mongodb": "*",
+        "mongoose": "3.8.*",
+        "socket.io": "0.9.10"
+    }
+}
