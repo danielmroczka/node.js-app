@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/nodejs');
+//mongoose.connect('mongodb://localhost/nodejs');
+mongoose.connect('mongodb://wmb:wmb@oceanic.mongohq.com:10035/nodejs');
 
 var Item = mongoose.model('Item', {
     text: String,
@@ -27,6 +28,10 @@ exports.findItemById = function (req, res) {
 };
 
 exports.addItem = function (req, res) {
+    var jsonData = JSON.parse(req.body.item);
+
+    console.log(jsonData);
+    console.log(jsonData.name);
     Item.create({
         text: 'test1',
         val: 111

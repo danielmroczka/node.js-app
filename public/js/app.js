@@ -6,8 +6,7 @@ var app = angular.module('app',
         'service'
     ]);
 
-//app.config(['$routeProvider', function ($routeProvider) {
-app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+app.config(['$routeProvider', function($routeProvider) {
     $routeProvider.
         when('/', {
             templateUrl: 'partials/empty.html',
@@ -17,11 +16,13 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
             templateUrl: 'partials/add.html',
             controller: 'controller'
         }).
-
+        when('/list', {
+            templateUrl: 'partials/list.html',
+            controller: 'listController'
+        }).
         otherwise({
             redirectTo: '/'
         });
-//    $locationProvider.html5Mode(true);
 
 }
 ]);
