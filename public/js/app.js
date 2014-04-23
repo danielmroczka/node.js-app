@@ -8,9 +8,8 @@ var app = angular.module('app',
 
 //app.config(['$routeProvider', function ($routeProvider) {
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
-    console.log('Route');
     $routeProvider.
-        when('/main', {
+        when('/', {
             templateUrl: 'partials/empty.html',
             controller: 'controller'
         }).
@@ -20,20 +19,20 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
         }).
 
         otherwise({
-            redirectTo: '/main'
+            redirectTo: '/'
         });
-    $locationProvider.html5Mode(true);
+//    $locationProvider.html5Mode(true);
 
 }
 ]);
 
-app.config(function ($httpProvider) {
+/*app.config(function ($httpProvider) {
     //Enable cross domain calls
     $httpProvider.defaults.useXDomain = true;
 
     //Remove the header used to identify ajax call  that would prevent CORS from working
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
-});
+});*/
 
 app.service('service', function ($http) {
     return {
