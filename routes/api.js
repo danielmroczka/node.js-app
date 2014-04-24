@@ -7,6 +7,13 @@ var Item = mongoose.model('Item', {
     val: Number
 });
 
+process.on('SIGINT', function() {
+    mongoose.connection.close(function() {
+        console.info('Mongoose disconnected through app termination');
+        process.exit(0);
+    });
+});
+
 exports.findAllItems = function (req, res) {
     Item.find(function (err, items) {
         if (err) {
@@ -14,7 +21,7 @@ exports.findAllItems = function (req, res) {
         }
 
         res.send(items);
-    })
+    });
 };
 
 exports.findItemById = function (req, res) {
@@ -24,17 +31,13 @@ exports.findItemById = function (req, res) {
         }
 
         res.send(items);
-    })
+    });
 };
 
 exports.addItem = function (req, res) {
-    var jsonData = JSON.parse(req.body.item);
-
-    console.log(jsonData);
-    console.log(jsonData.name);
     Item.create({
-        text: 'test1',
-        val: 111
+        text: req.body.text,
+        val: req.body.val
     }, function (err) {
         if (err) {
             res.send(err);
@@ -42,12 +45,12 @@ exports.addItem = function (req, res) {
         res.send(201);
 
     });
-}
+};
 
 exports.updateItem = function (req, res) {
 
-}
+};
 
 exports.deleteItem = function (req, res) {
 
-}
+};

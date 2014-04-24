@@ -1,8 +1,8 @@
 var controllers = angular.module('controllers', []);
 
-controllers.controller('controller', function ($scope) {
+controllers.controller('controller', function($scope) {
 
-    $scope.foo = function () {
+    $scope.foo = function() {
         console.log('Hello!');
     }
     /*
@@ -17,22 +17,22 @@ controllers.controller('controller', function ($scope) {
     $scope.hello = 'Hello!';
 });
 
-controllers.controller('listController', function ($scope, $http) {
-    $http.get('api/items').success(function (data) {
+controllers.controller('listController', function($scope, $http) {
+    $http.get('api/items').success(function(data) {
         $scope.items = data;
     });
 });
 
-controllers.controller('addController', function ($scope, $http) {
+controllers.controller('addController', function($scope, $http, $location) {
     $scope.item = {};
-    $scope.createItem = function () {
-        console.log($scope.item)
+    $scope.createItem = function() {
+        console.log($scope.item);
         $http({
             method: 'POST',
             url: 'api/items',
             data: $scope.item
-        }).success(function (data) {
-                console.log('post - ok');
-            });
-    }
+        }).success(function(data) {
+            $location.path("/");
+        });
+    };
 });
