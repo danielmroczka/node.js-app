@@ -5,3 +5,11 @@ The purpose of this project is to learn and use following technologies:
 - MongooseJS http://mongoosejs.com
 - Express http://expressjs.com
 - MongoDB http://www.mongodb.org
+
+Usage:
+
+init: 
+npm install
+
+run:
+npm server.js
