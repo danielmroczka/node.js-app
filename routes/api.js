@@ -7,6 +7,13 @@ var Item = mongoose.model('Item', {
     val: Number
 });
 
+process.on('SIGINT', function() {
+    mongoose.connection.close(function() {
+        console.info('Mongoose disconnected through app termination');
+        process.exit(0);
+    });
+});
+
 exports.findAllItems = function (req, res) {
     Item.find(function (err, items) {
         if (err) {
