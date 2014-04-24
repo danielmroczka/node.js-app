@@ -1,9 +1,12 @@
 <form ng-controller="addController" ng-submit="createItem()">
-
-    <legend>Create User</legend>
-
-    <label>Name</label>
-    <input type="text" id="name" name="name" ng-model="item.name" placeholder="User Name">
+    <p>
+        <label>Name</label>
+        <input type="text" id="text" name="name" ng-model="item.text" placeholder="User Name">
+    </p>
+    <p>
+        <label>Value</label>
+        <input type="text" id="val" name="name" ng-model="item.val" placeholder="Value">
+    </p>
 
     <button class="btn btn-primary">Register</button>
 

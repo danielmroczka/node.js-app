@@ -26,7 +26,7 @@ controllers.controller('listController', function ($scope, $http) {
 controllers.controller('addController', function ($scope, $http) {
     $scope.item = {};
     $scope.createItem = function () {
-        console.log($scope.item)
+        console.log($scope.item);
         $http({
             method: 'POST',
             url: 'api/items',
@@ -34,5 +34,5 @@ controllers.controller('addController', function ($scope, $http) {
         }).success(function (data) {
                 console.log('post - ok');
             });
-    }
+    };
 });
