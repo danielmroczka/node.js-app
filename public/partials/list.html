@@ -1,10 +1,7 @@
 <div class="span10">
-    <!--Body content-->
-
-    <ul class="items">
+    <ul class="items" ng-init="listItems()">
         <li ng-repeat="item in items" class="thumbnail">
             <p>{{item.text}} {{item.val}}</p>
         </li>
     </ul>
-
 </div>

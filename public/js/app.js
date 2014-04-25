@@ -10,15 +10,15 @@ app.config(['$routeProvider', function($routeProvider) {
     $routeProvider.
         when('/', {
             templateUrl: 'partials/empty.html',
-            controller: 'controller'
+            controller: 'itemcontroller'
         }).
         when('/add', {
             templateUrl: 'partials/add.html',
-            controller: 'controller'
+            controller: 'itemcontroller'
         }).
         when('/list', {
             templateUrl: 'partials/list.html',
-            controller: 'listController'
+            controller: 'itemController'
         }).
         otherwise({
             redirectTo: '/'
