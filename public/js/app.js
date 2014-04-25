@@ -10,11 +10,11 @@ app.config(['$routeProvider', function($routeProvider) {
     $routeProvider.
         when('/', {
             templateUrl: 'partials/empty.html',
-            controller: 'itemcontroller'
+            controller: 'itemController'
         }).
         when('/add', {
             templateUrl: 'partials/add.html',
-            controller: 'itemcontroller'
+            controller: 'itemController'
         }).
         when('/list', {
             templateUrl: 'partials/list.html',

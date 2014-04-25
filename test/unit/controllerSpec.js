@@ -1,10 +1,10 @@
-describe('PhoneCat controllers', function() {
+describe('Controllers Suite', function() {
 
-  describe('PhoneListCtrl', function(){
-    it('dummy', function() {
-    });
+    describe('Item Controllers', function() {
+        it('dummy', function() {
+        });
         it('foo', function() {
+        });
     });
-  });
 });
 
