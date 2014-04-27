@@ -24,6 +24,14 @@ app.config(['$routeProvider', function($routeProvider) {
             templateUrl: 'partials/login.html',
             controller: 'loginController'
         }).
+        when('/addMap', {
+            templateUrl: 'partials/addMap.html',
+            controller: 'mapController'
+        }).
+        when('/listMap', {
+            templateUrl: 'partials/listMap.html',
+            controller: 'mapController'
+        }).
         otherwise({
             redirectTo: '/'
         });
@@ -50,3 +58,4 @@ app.service('service', function ($http) {
         }
     };
 });
+

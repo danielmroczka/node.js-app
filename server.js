@@ -18,12 +18,16 @@ app.configure(function () {
     app.use(app.router);
 });
 
+//Items
 app.get('/api/items', api.findAllItems);
 app.get('/api/item/:id', api.findItemById);
-
 app.post('/api/items', api.addItem);
 app.put('/api/items/:id', api.updateItem);
 app.delete('/api/items/:id', api.deleteItem);
+
+//Map
+app.get('/api/maps', api.listMap);
+app.post('/api/maps', api.addMap);
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log("Express server listening on port " + app.get('port'));

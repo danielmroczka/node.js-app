@@ -1,0 +1,11 @@
+<div class="span10" ng-controller="mapController">
+    <ul class="items" ng-init="listMaps()">
+        <li ng-repeat="map in maps" class="thumbnail">
+            <h3>{{map.name}}</h3>
+            <p>{{map.country}}<p>
+            <p>{{map.city}}<p>
+            <p>{{map.region}}<p>
+            <p>{{map.scale}}<p>
+        </li>
+    </ul>
+</div>

@@ -29,3 +29,9 @@ footer {
 .modal-dialog {
     padding-top: 15%;
 }
+
+html, body, #map-canvas {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
