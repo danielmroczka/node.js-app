@@ -20,6 +20,10 @@ app.config(['$routeProvider', function($routeProvider) {
             templateUrl: 'partials/list.html',
             controller: 'itemController'
         }).
+        when('/login', {
+            templateUrl: 'partials/login.html',
+            controller: 'loginController'
+        }).
         otherwise({
             redirectTo: '/'
         });

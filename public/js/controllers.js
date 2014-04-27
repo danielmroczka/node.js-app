@@ -20,3 +20,12 @@ controllers.controller('itemController', function($scope, $http, $location) {
         });
     };
 });
+
+controllers.controller('loginController', function($scope) {
+    $scope.login = {user: '', password: ''};
+    $('#myModal').modal();
+
+    $scope.login = function() {
+        console.dir($scope);
+    };
+});

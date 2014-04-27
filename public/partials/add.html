@@ -1,28 +1,22 @@
 <form class="form-horizontal" ng-controller="itemController" ng-submit="createItem()">
     <fieldset>
-
-        <!-- Form Name -->
-        <legend>Form Name</legend>
-
-        <!-- Text input-->
+        <legend>Add New Item</legend>
         <div class="control-group">
             <label class="control-label" for="text">Name</label>
             <div class="controls">
-                <input id="text" name="text" ng-model="item.text" placeholder="placeholder" class="input-xlarge" required="" type="text">
-                <p class="help-block">help</p>
+                <input id="text" name="text" ng-model="item.text" placeholder="placeholder"  required="" type="text" class="form-control">
+                <p class="help-block"></p>
             </div>
         </div>
 
-        <!-- Text input-->
         <div class="control-group">
             <label class="control-label" for="val">Value</label>
             <div class="controls">
-                <input placeholder="placeholder" class="input-xlarge" type="text" id="val" name="val" ng-model="item.val" >
-                <p class="help-block">help</p>
+                <input placeholder="placeholder"  type="text" id="val" name="val" ng-model="item.val" class="form-control">
+                <p class="help-block"></p>
             </div>
         </div>
 
-        <!-- Button -->
         <div class="control-group">
             <label class="control-label" for="singlebutton"></label>
             <div class="controls">
