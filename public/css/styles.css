@@ -1,37 +1,9 @@
 body {
     color: gray;
-    background: #E9E9E9;
-    //padding: 10px;
-}
-
-header {
-    text-align: center;
-    border: 0px dotted gray;
-}
-
-.content {
     margin: 10px;
 }
 
-footer {
-    text-align: center;
-    border: 1px dotted gray;
-    position:fixed;
-    bottom:10px;
-    left: 0;
-    width: 100%;
-}
-
 .thumbnail:hover {
-    background-color: #f5f6f6;
-}
-
-.modal-dialog {
-    padding-top: 15%;
-}
-
-html, body, #map-canvas {
-    margin: 0;
-    padding: 0;
-    height: 100%;
+    background-color: #eae6e6;
+    font-weight: bold;
 }
