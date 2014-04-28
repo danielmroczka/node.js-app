@@ -41,13 +41,22 @@ controllers.controller('mapController', function($scope, $http, $location) {
             $location.path("/");
         });
     };
+    
+    $scope.removeMap = function(map) {
+        $http({
+            method: 'DELETE',
+            url: 'api/maps/' + map._id
+        }).success(function(data) {
+            $location.path("/listMap");
+        });
+    };
+    
     $scope.loadMap = function() {
 
         initialize();
     };
 
     function initialize() {
-        console.log('init')
         var map;
         var mapOptions = {
             zoom: 8,

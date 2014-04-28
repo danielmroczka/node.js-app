@@ -100,3 +100,14 @@ exports.listMap = function(req, res) {
         res.send(items);
     });
 };
+
+exports.deleteMap = function(req, res) {
+    console.dir(req.params.id);
+    Map.remove({_id: req.params.id}, function(err, items) {
+        if (err) {
+            res.send(err);
+        }
+
+        res.send(items);
+    });
+};
