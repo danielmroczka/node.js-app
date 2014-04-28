@@ -31,6 +31,9 @@ app.post('/api/maps', api.addMap);
 app.delete('/api/maps/:id', api.deleteMap);
 app.put('/api/maps/', api.updateMap);
 
+//User
+app.post('/api/users', api.createUser);
+
 http.createServer(app).listen(app.get('port'), function () {
     console.log("Express server listening on port " + app.get('port'));
 }); 

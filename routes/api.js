@@ -1,6 +1,11 @@
 var mongoose = require('mongoose');
-//mongoose.connect('mongodb://localhost/nodejs');
-mongoose.connect('mongodb://wmb:wmb@oceanic.mongohq.com:10035/nodejs');
+var fs = require('fs');
+var crypto = require('crypto');
+mongoose.connect('mongodb://wmb:wmb@oceanic.mongohq.com:10035/nodejs'); //'mongodb://localhost/nodejs';
+
+mongoose.connection.on('open', function() {
+    console.log('Connected to: ' + mongoose.connections[0].host);
+});
 
 var Item = mongoose.model('Item', {
     text: String,
@@ -13,9 +18,18 @@ var Map = mongoose.model('Map', {
     city: String,
     region: String,
     scale: Number,
-    location: {longTopLeft: Number, latTopLeft: Number, longBottomRight: Number, latBottomRight: Number}
+    location: {
+        longTopLeft: Number,
+        latTopLeft: Number,
+        longBottomRight: Number,
+        latBottomRight: Number},
+    img: {data: Buffer, contentType: String, url: String}
+});
 
-    //location: [new mongoose.Schema({longTopLeft: Number, latTopLeft: Number}, {longBottomRight: Number, latBottomRight: Number}, {_id: false})]
+var User = mongoose.model('User', {
+    username: String,
+    email: String,
+    password: String
 });
 
 process.on('SIGINT', function() {
@@ -105,45 +119,35 @@ exports.deleteMap = function(req, res) {
     console.dir(req.params.id);
     Map.remove({_id: req.params.id}, function(err, items) {
         if (err) {
+            throw err;
             res.send(err);
         }
-
         res.send(items);
     });
 };
 
 exports.updateMap = function(req, res) {
-   // console.dir(req);
     var id = req.body._id;
     delete req.body._id;
-    Map.update({_id: id}, req.body, {upsert: true}, function(err) {
+    Map.update({id: id}, req.body, {upsert: true}, function(err) {
         if (err) {
             throw err;
             res.send(err);
         }
         res.send(201);
-
     });
-    /*
-    Map.up create({
-        name: req.body.name,
-        city: req.body.city,
-        country: req.body.country,
-        region: req.body.region,
-        scale: req.body.scale,
-        location: {
-            longTopLeft: req.body.location.longTopLeft,
-            latTopLeft: req.body.location.latTopLeft,
-            longBottomRight: req.body.location.longBottomRight,
-            latBottomRight: req.body.location.latBottomRight
-        }
+};
 
+exports.createUser = function(req, res) {
+    User.create({
+        username: req.body.username,
+        email: req.body.email,
+        password: crypto.createHash('md5').update(req.body.password).digest('hex')
     }, function(err) {
         if (err) {
             throw err;
             res.send(err);
         }
         res.send(201);
-
-    });*/
+    });
 };
