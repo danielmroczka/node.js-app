@@ -1,30 +1,14 @@
 var controllers = angular.module('controllers', []);
 
-controllers.controller('controller', function($scope) {
-
-    $scope.foo = function() {
-        console.log('Hello!');
-    }
-    /*
-     $scope.books = service.getBooks()
-     .success(function(data) {
-     $scope.books = data.books;
-     })
-     .error(function(data, status) {
-     console.error('Error' + status);
-     });
-     */
-    $scope.hello = 'Hello!';
-});
-
-controllers.controller('listController', function($scope, $http) {
-    $http.get('api/items').success(function(data) {
-        $scope.items = data;
-    });
-});
-
-controllers.controller('addController', function($scope, $http, $location) {
+controllers.controller('itemController', function($scope, $http, $location) {
     $scope.item = {};
+
+    $scope.listItems = function() {
+        $http.get('api/items').success(function(data) {
+            $scope.items = data;
+        });
+    };
+
     $scope.createItem = function() {
         console.log($scope.item);
         $http({
@@ -35,4 +19,52 @@ controllers.controller('addController', function($scope, $http, $location) {
             $location.path("/");
         });
     };
+});
+
+controllers.controller('mapController', function($scope, $http, $location) {
+    $scope.map = {};
+    $scope.map.location = {};
+
+    $scope.listMaps = function() {
+        $http.get('api/maps').success(function(data) {
+            $scope.maps = data;
+        });
+    };
+
+    $scope.createMap = function() {
+        console.log($scope.map);
+        $http({
+            method: 'POST',
+            url: 'api/maps',
+            data: $scope.map
+        }).success(function(data) {
+            $location.path("/");
+        });
+    };
+    $scope.loadMap = function() {
+
+        initialize();
+    };
+
+    function initialize() {
+        console.log('init')
+        var map;
+        var mapOptions = {
+            zoom: 8,
+            center: new google.maps.LatLng(50, 20),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    }
+
+});
+
+controllers.controller('loginController', function($scope) {
+    $scope.login = {user: '', password: ''};
+    $('#myModal').modal();
+
+    $scope.login = function() {
+        console.dir($scope);
+    };
+
 });

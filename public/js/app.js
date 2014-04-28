@@ -10,15 +10,27 @@ app.config(['$routeProvider', function($routeProvider) {
     $routeProvider.
         when('/', {
             templateUrl: 'partials/empty.html',
-            controller: 'controller'
+            controller: 'itemController'
         }).
         when('/add', {
             templateUrl: 'partials/add.html',
-            controller: 'controller'
+            controller: 'itemController'
         }).
         when('/list', {
             templateUrl: 'partials/list.html',
-            controller: 'listController'
+            controller: 'itemController'
+        }).
+        when('/login', {
+            templateUrl: 'partials/login.html',
+            controller: 'loginController'
+        }).
+        when('/addMap', {
+            templateUrl: 'partials/addMap.html',
+            controller: 'mapController'
+        }).
+        when('/listMap', {
+            templateUrl: 'partials/listMap.html',
+            controller: 'mapController'
         }).
         otherwise({
             redirectTo: '/'
@@ -46,3 +58,4 @@ app.service('service', function ($http) {
         }
     };
 });
+
