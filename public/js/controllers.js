@@ -23,7 +23,9 @@ controllers.controller('itemController', function($scope, $http, $location) {
 
 controllers.controller('mapController', function($scope, $http, $location) {
     $scope.map = {};
+    $scope.editedItem = null;
     $scope.map.location = {};
+    $scope.map.editing = false;
 
     $scope.listMaps = function() {
         $http.get('api/maps').success(function(data) {
@@ -41,7 +43,7 @@ controllers.controller('mapController', function($scope, $http, $location) {
             $location.path("/");
         });
     };
-    
+
     $scope.removeMap = function(map) {
         $http({
             method: 'DELETE',
@@ -50,7 +52,30 @@ controllers.controller('mapController', function($scope, $http, $location) {
             $location.path("/listMap");
         });
     };
+
+    $scope.edit = function(map) {
+        map.editing = true;
+        $scope.editedItem = map;
+    };
+
+    $scope.save = function(map) {
+        map.editing = false;
+        $scope.editedItem = null;
+        
+        $http({
+            method: 'PUT',
+            url: 'api/maps/',
+            data: map
+        }).success(function(data) {
+            $location.path("/listMap");
+        });
+    };
     
+    $scope.cancel = function(map) {
+        map.editing = false;
+        $scope.editedItem = null;
+    };
+
     $scope.loadMap = function() {
 
         initialize();

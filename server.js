@@ -29,6 +29,7 @@ app.delete('/api/items/:id', api.deleteItem);
 app.get('/api/maps', api.listMap);
 app.post('/api/maps', api.addMap);
 app.delete('/api/maps/:id', api.deleteMap);
+app.put('/api/maps/', api.updateMap);
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log("Express server listening on port " + app.get('port'));

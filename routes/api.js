@@ -111,3 +111,39 @@ exports.deleteMap = function(req, res) {
         res.send(items);
     });
 };
+
+exports.updateMap = function(req, res) {
+   // console.dir(req);
+    var id = req.body._id;
+    delete req.body._id;
+    Map.update({_id: id}, req.body, {upsert: true}, function(err) {
+        if (err) {
+            throw err;
+            res.send(err);
+        }
+        res.send(201);
+
+    });
+    /*
+    Map.up create({
+        name: req.body.name,
+        city: req.body.city,
+        country: req.body.country,
+        region: req.body.region,
+        scale: req.body.scale,
+        location: {
+            longTopLeft: req.body.location.longTopLeft,
+            latTopLeft: req.body.location.latTopLeft,
+            longBottomRight: req.body.location.longBottomRight,
+            latBottomRight: req.body.location.latBottomRight
+        }
+
+    }, function(err) {
+        if (err) {
+            throw err;
+            res.send(err);
+        }
+        res.send(201);
+
+    });*/
+};

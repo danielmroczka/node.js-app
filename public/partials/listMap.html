@@ -1,12 +1,26 @@
-<div class="span10" ng-controller="mapController">
+<div class="span12" ng-controller="mapController">
     <ul class="items" ng-init="listMaps()">
-        <li ng-repeat="map in maps" class="thumbnail">
-            <h3>{{map.name}}</h3>
-            <p>{{map.country}}<p>
-            <p>{{map.city}}<p>
-            <p>{{map.region}}<p>
-            <p>{{map.scale}}<p>
-            <div class="glyphicon glyphicon-remove-circle" ng-click="removeMap(map)"></div>
+        <li ng-repeat="map in maps" class="thumbnail" ng-dblclick="edit(map)">
+            <div ng-hide="map.editing">
+                <h3>{{map.name}}</h3>
+                <p>{{map.country}}<p>
+                <p>{{map.city}}<p>
+                <p>{{map.region}}<p>
+                <p>{{map.scale}}<p>
+                <div class="glyphicon glyphicon-remove-circle" ng-click="removeMap(map)"></div>
+            </div>
+
+            <form ng-show="map.editing">
+                <input class="form-control" ng-model="map.name">
+                <input class="form-control" ng-model="map.country">
+                <input class="form-control" ng-model="map.city">
+                <input class="form-control" ng-model="map.region">
+                <input class="form-control" ng-model="map.scale">
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary" ng-click="save(map)">Save changes</button>
+                    <button type="button" class="btn" ng-click="cancel(map)">Cancel</button>
+                </div>
+            </form>
         </li>
     </ul>
 </div>
