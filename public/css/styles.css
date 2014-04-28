@@ -2,3 +2,8 @@ body {
     color: gray;
     margin: 10px;
 }
+
+.thumbnail:hover {
+    background-color: #eae6e6;
+    font-weight: bold;
+}
