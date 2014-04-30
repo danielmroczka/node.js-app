@@ -1,36 +1,14 @@
 var mongoose = require('mongoose');
 var fs = require('fs');
 var crypto = require('crypto');
+var model = require('./model.js');
 mongoose.connect('mongodb://wmb:wmb@oceanic.mongohq.com:10035/nodejs'); //'mongodb://localhost/nodejs';
 
 mongoose.connection.on('open', function() {
     console.log('Connected to: ' + mongoose.connections[0].host);
 });
 
-var Item = mongoose.model('Item', {
-    text: String,
-    val: Number
-});
 
-var Map = mongoose.model('Map', {
-    name: String,
-    country: String,
-    city: String,
-    region: String,
-    scale: Number,
-    location: {
-        longTopLeft: Number,
-        latTopLeft: Number,
-        longBottomRight: Number,
-        latBottomRight: Number},
-    img: {data: Buffer, contentType: String, url: String}
-});
-
-var User = mongoose.model('User', {
-    username: String,
-    email: String,
-    password: String
-});
 
 process.on('SIGINT', function() {
     mongoose.connection.close(function() {
@@ -81,8 +59,7 @@ exports.deleteItem = function(req, res) {
 };
 
 exports.addMap = function(req, res) {
-    console.dir(req.body);
-    Map.create({
+    model.Map.create({
         name: req.body.name,
         city: req.body.city,
         country: req.body.country,
@@ -106,7 +83,7 @@ exports.addMap = function(req, res) {
 };
 
 exports.listMap = function(req, res) {
-    Map.find(function(err, items) {
+    model.Map.find(function(err, items) {
         if (err) {
             res.send(err);
         }
@@ -116,8 +93,7 @@ exports.listMap = function(req, res) {
 };
 
 exports.deleteMap = function(req, res) {
-    console.dir(req.params.id);
-    Map.remove({_id: req.params.id}, function(err, items) {
+    model.Map.remove({_id: req.params.id}, function(err, items) {
         if (err) {
             throw err;
             res.send(err);
@@ -129,7 +105,7 @@ exports.deleteMap = function(req, res) {
 exports.updateMap = function(req, res) {
     var id = req.body._id;
     delete req.body._id;
-    Map.update({id: id}, req.body, {upsert: true}, function(err) {
+    model.Map.update({id: id}, req.body, {upsert: true}, function(err) {
         if (err) {
             throw err;
             res.send(err);
