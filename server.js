@@ -6,7 +6,7 @@ var express = require('express'),
 var app = module.exports = express();
 
 app.configure(function () {
-    app.set('port', process.env.PORT || 3001);
+    app.set('port', process.env.PORT || 3000);
     /* 'default', 'short', 'tiny', 'dev' */
     app.use(express.logger('dev'));
     /* app.use(express.bodyParser()); */

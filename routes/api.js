@@ -8,8 +8,6 @@ mongoose.connection.on('open', function() {
     console.log('Connected to: ' + mongoose.connections[0].host);
 });
 
-
-
 process.on('SIGINT', function() {
     mongoose.connection.close(function() {
         console.info('Mongoose disconnected through app termination');
@@ -18,7 +16,7 @@ process.on('SIGINT', function() {
 });
 
 exports.findAllItems = function(req, res) {
-    Item.find(function(err, items) {
+    model.Item.find(function(err, items) {
         if (err) {
             res.send(err);
         }
@@ -28,7 +26,7 @@ exports.findAllItems = function(req, res) {
 };
 
 exports.findItemById = function(req, res) {
-    Item.find({id: 0}, function(err, items) {
+    model.Item.find({id: 0}, function(err, items) {
         if (err) {
             res.send(err);
         }
@@ -38,7 +36,7 @@ exports.findItemById = function(req, res) {
 };
 
 exports.addItem = function(req, res) {
-    Item.create({
+    mode.Item.create({
         text: req.body.text,
         val: req.body.val
     }, function(err) {
@@ -115,7 +113,7 @@ exports.updateMap = function(req, res) {
 };
 
 exports.createUser = function(req, res) {
-    User.create({
+    model.User.create({
         username: req.body.username,
         email: req.body.email,
         password: crypto.createHash('md5').update(req.body.password).digest('hex')
